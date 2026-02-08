@@ -75,7 +75,7 @@
 }
 
 @layer utilities {
-  /* Gradient text */
+  /* Static gradient text */
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
@@ -84,6 +84,33 @@
       hsl(var(--accent)) 50%,
       hsl(var(--primary)) 100%
     );
+  }
+
+  /* Animated flowing gradient text */
+  .gradient-text-animated {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 25%,
+      hsl(270 80% 65%) 50%,
+      hsl(var(--accent)) 75%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% 100%;
+    animation: gradient-flow 4s ease-in-out infinite;
+  }
+
+  @keyframes gradient-flow {
+    0% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
 
   /* Glow effects */
@@ -116,12 +143,28 @@
     z-index: 1;
   }
 
-  /* Mesh gradient background */
+  /* Animated mesh gradient background */
   .mesh-gradient {
     background: 
       radial-gradient(ellipse 80% 50% at 20% 40%, hsl(var(--primary) / 0.15) 0%, transparent 50%),
       radial-gradient(ellipse 60% 40% at 80% 60%, hsl(var(--accent) / 0.1) 0%, transparent 50%),
       radial-gradient(ellipse 50% 30% at 50% 20%, hsl(270 80% 60% / 0.08) 0%, transparent 50%);
+    animation: mesh-shift 20s ease-in-out infinite;
+  }
+
+  @keyframes mesh-shift {
+    0%, 100% {
+      background-position: 0% 0%, 100% 100%, 50% 0%;
+    }
+    25% {
+      background-position: 100% 50%, 0% 50%, 100% 100%;
+    }
+    50% {
+      background-position: 50% 100%, 50% 0%, 0% 50%;
+    }
+    75% {
+      background-position: 0% 50%, 100% 100%, 50% 100%;
+    }
   }
 
   /* Grid background */

@@ -1,23 +1,37 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Sparkles } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating orbs */}
+        {/* Floating orbs with more dynamic movement */}
         <motion.div
-          animate={{ y: [-20, 20, -20] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
+          animate={{ 
+            y: [-30, 30, -30],
+            x: [-20, 20, -20],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-3xl"
         />
         <motion.div
-          animate={{ y: [20, -20, 20] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-accent/5 blur-3xl"
+          animate={{ 
+            y: [30, -30, 30],
+            x: [20, -20, 20],
+            scale: [1.1, 1, 1.1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-accent/10 blur-3xl"
+        />
+        <motion.div
+          animate={{ 
+            y: [-20, 40, -20],
+            x: [30, -30, 30],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[hsl(270_80%_60%/0.08)] blur-3xl"
         />
         
         {/* Grid lines */}
@@ -45,7 +59,7 @@ export function Hero() {
             className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
           >
             <span className="text-foreground">Building the </span>
-            <span className="gradient-text">AI Infrastructure</span>
+            <span className="gradient-text-animated">AI Infrastructure</span>
             <span className="text-foreground"> of Tomorrow</span>
           </motion.h1>
 
@@ -54,28 +68,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed text-balance"
           >
             We design and build AI-powered software infrastructure platforms and developer-focused AI systems that scale from prototype to millions of users.
           </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Button variant="hero" size="xl" asChild>
-              <Link to="/products" className="group">
-                Explore Lab
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            <Button variant="hero-outline" size="xl" asChild>
-              <Link to="/contact">Collaborate</Link>
-            </Button>
-          </motion.div>
         </div>
 
         {/* Bottom gradient line */}
