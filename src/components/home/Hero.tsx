@@ -40,15 +40,26 @@ export function Hero() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
+          {/* Badge with scanning line */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border mb-8 relative overflow-hidden"
           >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">AI Infrastructure Lab</span>
+            {/* Scanning line animation */}
+            <motion.div
+              animate={{ x: ["-100%", "400%"] }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity, 
+                ease: "linear",
+                repeatDelay: 0.5
+              }}
+              className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-transparent via-primary/40 to-transparent pointer-events-none"
+            />
+            <Sparkles className="w-4 h-4 text-primary relative z-10" />
+            <span className="text-sm text-muted-foreground relative z-10">AI Infrastructure Lab</span>
           </motion.div>
 
           {/* Main headline */}
@@ -82,26 +93,6 @@ export function Hero() {
           className="absolute bottom-20 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
         />
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
-        >
-          <motion.div
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-2 rounded-full bg-muted-foreground"
-          />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
